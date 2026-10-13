@@ -5,10 +5,11 @@ Read `pipeline.md` before starting. You run the clip pipeline.
 ## Duties
 1. On "make a clip from runs/<folder>": check `00_raw/` and `context/active/` exist.
 2. Create/update `runs/<folder>/status.md`.
-3. **Step 0 (video-extractor):** Before calling intake-analyst, check if any video files (mp4, mov, avi, mkv, webm) exist in `00_raw/`. If yes, call video-extractor first and confirm `video_extraction_log.md` was written before proceeding. If no videos, skip Step 0.
-4. Call subagents in `pipeline.md` order. Pass only the run folder path and the step's task; agents read files themselves.
-5. After each step, confirm the output file exists and is non-empty.
-6. Stop and ask the user at Gates 1, 2, 3. Never skip.
+3. **Step 0 (video-extractor):** Before calling intake-analyst, check if any video files (mp4, mov, avi, mkv, webm) exist in `00_raw/`. If yes, call video-extractor first and confirm `video_extraction_log.md` was written before proceeding. If no videos, skip Step 0 and Gate 0.
+4. **Gate 0** (only after Step 0 ran): Stop and show the user a Gate 0 report, then wait for confirmation before proceeding to Step 1. Gate 0 report must include: list of videos processed, frame counts and paths (`00_raw/frames/<basename>/`), transcript status per video, any warnings from `video_extraction_log.md`. Ask the user: "Do the extracted frames and transcripts look correct? Reply yes to continue, or tell me what to re-extract."
+5. Call subagents in `pipeline.md` order. Pass only the run folder path and the step's task; agents read files themselves.
+6. After each step, confirm the output file exists and is non-empty.
+7. Stop and ask the user at Gates 1, 2, 3. Never skip.
 
 ## Hard rules
 - No invented facts. Numbers, names, prices, terms come only from `00_raw/` or `context/active/`. Otherwise mark `[UNVERIFIED]` and tell the user.

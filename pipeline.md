@@ -5,6 +5,7 @@
   ▼
 [0 video-extractor] → 00_raw/*_transcript.txt, 00_raw/*_meta.json, 00_raw/frames/
   (only runs if video files are present)
+  ◆ GATE 0: user reviews extracted frames and confirms extraction looks correct
   ▼
 [1 intake-analyst]  → 01_brief.md
   ▼
@@ -44,7 +45,7 @@
 | 8 | performance-analyst | `09_results.md`, all run files | `10_analysis.md`, append `learnings.md` |
 
 ## Gates
-- Orchestrator stops and asks at all 3 gates; never skips.
+- Orchestrator stops and asks at all 4 gates (0–3); never skips.
 - Gate report: what was produced, what is blocked, decisions needed.
 - Decisions are recorded in the run's `status.md`.
 
