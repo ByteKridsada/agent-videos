@@ -3,6 +3,9 @@
 ```
 00_raw
   ▼
+[0 video-extractor] → 00_raw/*_transcript.txt, 00_raw/*_meta.json, 00_raw/frames/
+  (only runs if video files are present)
+  ▼
 [1 intake-analyst]  → 01_brief.md
   ▼
 [2 idea-strategist] → 02_ideas.md
@@ -30,6 +33,7 @@
 ## I/O
 | # | Agent | Reads | Writes |
 |---|---|---|---|
+| 0 | video-extractor | `00_raw/*.{mp4,mov,…}`, `context/active/settings.md` | `00_raw/*_transcript.txt`, `00_raw/*_meta.json`, `00_raw/frames/`, `00_raw/video_extraction_log.md` |
 | 1 | intake-analyst | `00_raw/*`, `context/active/*` | `01_brief.md` |
 | 2 | idea-strategist | `01_brief.md`, `context/active/*` | `02_ideas.md` |
 | 3 | scriptwriter | `01_brief.md`, chosen idea in `status.md`, `voice.md`, `dos-donts.md`, `04_review.md` (revisions) | `03_script.md` |
